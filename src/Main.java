@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        try {
+        /*try {
 
             List<User> users= AccountRepository.showAllAccounts(mySqlJar.Connect());
             for (int i=1;i<=users.size();i++){
@@ -16,8 +16,12 @@ public class Main {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        Authorization.CreateAnAccount();
+
 
 
     }
+
+
 }

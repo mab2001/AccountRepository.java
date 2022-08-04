@@ -5,11 +5,12 @@ public class User {
     private Integer userId;
     private String userName;
     private String userPassWord;
-    private Integer userMobilePhoneNumber;
+    private String userPhoneNumber;
     private String userGmail;
     private String userAccountType;
-    private Integer userCreateAccountTime;
+    private String userAccountCreateTime;
     private String userLastSeen;
+
 
     public Integer getUserId() {
         return userId;
@@ -35,12 +36,12 @@ public class User {
         this.userPassWord = userPassWord;
     }
 
-    public Integer getUserMobilePhoneNumber() {
-        return userMobilePhoneNumber;
+    public String getUserPhoneNumber() {
+        return userPhoneNumber;
     }
 
-    public void setUserMobilePhoneNumber(Integer userMobilePhoneNumber) {
-        this.userMobilePhoneNumber = userMobilePhoneNumber;
+    public void setUserPhoneNumber(String userPhoneNumber) {
+        this.userPhoneNumber = userPhoneNumber;
     }
 
     public String getUserGmail() {
@@ -59,12 +60,12 @@ public class User {
         this.userAccountType = userAccountType;
     }
 
-    public Integer getUserCreateAccountTime() {
-        return userCreateAccountTime;
+    public String getUserAccountCreateTime() {
+        return userAccountCreateTime;
     }
 
-    public void setUserCreateAccountTime(Integer userCreateAccountTime) {
-        this.userCreateAccountTime = userCreateAccountTime;
+    public void setUserAccountCreateTime(String userAccountCreateTime) {
+        this.userAccountCreateTime = userAccountCreateTime;
     }
 
     public String getUserLastSeen() {
@@ -81,22 +82,23 @@ public class User {
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userPassWord='" + userPassWord + '\'' +
-                ", userMobilePhoneNumber=" + userMobilePhoneNumber +
+                ", userMobilePhoneNumber=" + userPhoneNumber +
                 ", userGmail='" + userGmail + '\'' +
                 ", userAccountType='" + userAccountType + '\'' +
-                ", userCreateAccountTime=" + userCreateAccountTime +
+                ", userCreateAccountTime=" + userAccountCreateTime +
                 ", userLastSeen='" + userLastSeen + '\'' +
                 '}';
     }
 
-    public User(Integer userId, String userName, String userPassWord, Integer userMobilePhoneNumber, String userGmail, String userAccountType, Integer userCreateAccountTime, String userLastSeen) {
+
+    public User(Integer userId, String userName, String userPassWord, String userMobilePhoneNumber, String userGmail, String userAccountType, String userCreateAccountTime, String userLastSeen) {
         this.userId = userId;
         this.userName = userName;
         this.userPassWord = userPassWord;
-        this.userMobilePhoneNumber = userMobilePhoneNumber;
+        this.userPhoneNumber = userMobilePhoneNumber;
         this.userGmail = userGmail;
         this.userAccountType = userAccountType;
-        this.userCreateAccountTime = userCreateAccountTime;
+        this.userAccountCreateTime = userCreateAccountTime;
         this.userLastSeen = userLastSeen;
     }
     public User(){
