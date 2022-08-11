@@ -3,12 +3,28 @@ package entity;
 public class PrivateChat {
 
     private Integer privatechatId;
-    private String privatechatName;
+    private String privatechatOwner;
+    private String privatechatSender;
     private Integer privatechatMessagesNumber;
-    private Integer privatechatCreateTime;
+    private String privatechatCreateTime;
     private String privatechatMuteType;
-    private String privatechatReportType;
     private String privatechatBlockType;
+
+    public String getPrivatechatOwner() {
+        return privatechatOwner;
+    }
+
+    public void setPrivatechatOwner(String privatechatOwner) {
+        this.privatechatOwner = privatechatOwner;
+    }
+
+    public String getPrivatechatSender() {
+        return privatechatSender;
+    }
+
+    public void setPrivatechatSender(String privatechatSender) {
+        this.privatechatSender = privatechatSender;
+    }
 
     public Integer getPrivatechatId() {
         return privatechatId;
@@ -16,14 +32,6 @@ public class PrivateChat {
 
     public void setPrivatechatId(Integer privatechatId) {
         this.privatechatId = privatechatId;
-    }
-
-    public String getPrivatechatName() {
-        return privatechatName;
-    }
-
-    public void setPrivatechatName(String privatechatName) {
-        this.privatechatName = privatechatName;
     }
 
     public Integer getPrivatechatMessagesNumber() {
@@ -34,11 +42,11 @@ public class PrivateChat {
         this.privatechatMessagesNumber = privatechatMessagesNumber;
     }
 
-    public Integer getPrivatechatCreateTime() {
+    public String getPrivatechatCreateTime() {
         return privatechatCreateTime;
     }
 
-    public void setPrivatechatCreateTime(Integer privatechatCreateTime) {
+    public void setPrivatechatCreateTime(String privatechatCreateTime) {
         this.privatechatCreateTime = privatechatCreateTime;
     }
 
@@ -48,14 +56,6 @@ public class PrivateChat {
 
     public void setPrivatechatMuteType(String privatechatMuteType) {
         this.privatechatMuteType = privatechatMuteType;
-    }
-
-    public String getPrivatechatReportType() {
-        return privatechatReportType;
-    }
-
-    public void setPrivatechatReportType(String privatechatReportType) {
-        this.privatechatReportType = privatechatReportType;
     }
 
     public String getPrivatechatBlockType() {
@@ -68,14 +68,28 @@ public class PrivateChat {
 
     @Override
     public String toString() {
-        return "privatechat{" +
+        return "PrivateChat{" +
                 "privatechatId=" + privatechatId +
-                ", privatechatName='" + privatechatName + '\'' +
+                ", privatechatOwner='" + privatechatOwner + '\'' +
+                ", privatechatSender='" + privatechatSender + '\'' +
                 ", privatechatMessagesNumber=" + privatechatMessagesNumber +
-                ", privatechatCreateTime=" + privatechatCreateTime +
+                ", privatechatCreateTime='" + privatechatCreateTime + '\'' +
                 ", privatechatMuteType='" + privatechatMuteType + '\'' +
-                ", privatechatReportType='" + privatechatReportType + '\'' +
                 ", privatechatBlockType='" + privatechatBlockType + '\'' +
                 '}';
+    }
+
+    public PrivateChat(){
+
+    }
+
+    public PrivateChat(Integer privatechatId, String privatechatOwner, String privatechatSender, Integer privatechatMessagesNumber, String privatechatCreateTime, String privatechatMuteType, String privatechatBlockType) {
+        this.privatechatId = privatechatId;
+        this.privatechatOwner = privatechatOwner;
+        this.privatechatSender = privatechatSender;
+        this.privatechatMessagesNumber = privatechatMessagesNumber;
+        this.privatechatCreateTime = privatechatCreateTime;
+        this.privatechatMuteType = privatechatMuteType;
+        this.privatechatBlockType = privatechatBlockType;
     }
 }

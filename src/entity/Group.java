@@ -9,7 +9,7 @@ public class Group {
     private Integer groupAdminsNumber;
     private Integer groupMembersNumber;
     private String groupBio;
-    private Integer groupCreateTime;
+    private String groupCreateTime;
 
     public Integer getGroupId() {
         return groupId;
@@ -67,11 +67,11 @@ public class Group {
         this.groupBio = groupBio;
     }
 
-    public Integer getGroupCreateTime() {
+    public String getGroupCreateTime() {
         return groupCreateTime;
     }
 
-    public void setGroupCreateTime(Integer groupCreateTime) {
+    public void setGroupCreateTime(String groupCreateTime) {
         this.groupCreateTime = groupCreateTime;
     }
 
@@ -87,5 +87,19 @@ public class Group {
                 ", groupBio='" + groupBio + '\'' +
                 ", groupCreateTime=" + groupCreateTime +
                 '}';
+    }
+    public Group(){
+
+    }
+
+    public Group(Integer groupId, String groupName, String groupType, String groupCreator, Integer groupAdminsNumber, Integer groupMembersNumber, String groupBio, String groupCreateTime) {
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.groupType = groupType;
+        this.groupCreator = groupCreator;
+        this.groupAdminsNumber = groupAdminsNumber;
+        this.groupMembersNumber = groupMembersNumber;
+        this.groupBio = groupBio;
+        this.groupCreateTime = groupCreateTime;
     }
 }

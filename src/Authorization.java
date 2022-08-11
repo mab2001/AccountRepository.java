@@ -15,29 +15,18 @@ public class Authorization {
         user.setUserPhoneNumber(getPhoneNumber(scanner,user));
         user.setUserGmail(getGmail(scanner,user));
         user.setUserAccountType(getAccountType(scanner,user));
-        user.setUserAccountCreateTime(getAccountCreateTime());
-
-        /*System.out.println(user.getUserName());
-        System.out.println(user.getUserPassWord());
-        System.out.println(user.getUserPhoneNumber());
-        System.out.println(user.getUserGmail());
-        System.out.println(user.getUserAccountType());
-        System.out.println(user.getUserAccountCreateTime());*/
+        user.setUserAccountCreateTime(getTime());
 
         SqlJar sqlJar=new SqlJar();
         boolean status = sqlJar.InsertUser(user);
         if (status) System.out.println("Your Account is Created Successfully. Welcome!");
         else System.out.println("Unfortunately A Problem Has Occurred.");
-
-
     }
-
-    private static String getAccountCreateTime() {
+    private static String getTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
         return now.format(dtf);
     }
-
     private static String getAccountType(Scanner scanner,User user) {
         System.out.println("Select your AccountType:");
         System.out.println("-Type 1 For \"regular\"");
@@ -57,22 +46,19 @@ public class Authorization {
             return "commercial";
         }
     }
-
     private static String getGmail(Scanner scanner,User user)  {
-        System.out.println(":برای بازیابی جیمیل خود را وارد نمایید");
-        //System.out.println("داشته باشد@gmail.comباید");
+        System.out.println("enter your gmail address");
+        System.out.println("it should has @gmail.com");
         return scanner.nextLine();
         //TODO Gmail must be Checked for prohibited characters
 
     }
-
     private static String getPhoneNumber(Scanner scanner,User user) {
-        System.out.println(":برای بازیابی شماره تلفن همراه خود را وارد نمایید");
-        System.out.println("یک عدد 11 رقمی که فراموش نخواهید کرد");
+        System.out.println("enter your mobile phone number:");
+        System.out.println("a number with 11 character(don't forget it)");
         return scanner.nextLine();
         //TODO PhoneNumber must be Checked for prohibited characters
     }
-
     private static String getPassword(Scanner scanner,User user) {
         System.out.println("Enter Your Desired Password:");
         //System.out.println("password can be from a-z , A-Z , 0-9 , @ and _ ");
@@ -94,7 +80,6 @@ public class Authorization {
             return password3;
         }
     }
-
     private static String getUserName(Scanner scanner, User user) {
         System.out.println("Enter Your Desired username:");
         System.out.println("UserName Can't Have Space");

@@ -8,7 +8,7 @@ public class DataBaseInitializer {
 
     public void createTables(Connection connection) throws SQLException {
         initaccounttable(connection.createStatement());
-        initadminetable(connection.createStatement());
+        initadmintable(connection.createStatement());
         initbannedtable(connection.createStatement());
         initblocktable(connection.createStatement());
         initclosefriendtable(connection.createStatement());
@@ -26,37 +26,50 @@ public class DataBaseInitializer {
         initpagesviewtable(connection.createStatement());
         initposttable(connection.createStatement());
         initprivatechatmessagetable(connection.createStatement());
+        initprivatechattable(connection.createStatement());
         initprofiletable(connection.createStatement());
         initreportedtable(connection.createStatement());
         initsmstable(connection.createStatement());
         initviewposttable(connection.createStatement());
     }
 
+    private void initprivatechattable(Statement statement) throws SQLException {
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
+                "PrivateChat(privatechatId int NOT NULL AUTO_INCREMENT, " +
+                "privatechatOwner varchar(255), " +
+                "privatechatSender varchar(255), " +
+                "privatechatMessagesNumber varchar(255), " +
+                "privatechatCreateTime varchar(255), " +
+                "privatechatMuteType varchar(255), " +
+                "privatechatBlockType varchar(255), " +
+                "PRIMARY KEY (id)");
+        statement.close();}
+
     private void initviewposttable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "ViewPost(id int NOT NULL AUTO_INCREMENT, " +
-                "پست کیه؟ varchar(255), " +
-                "پست چندمه؟ varchar(255), " +
-                "کی دیده؟ varchar(255), " +
-                "زمان دقیق varchar(255), " +
+                "post_owner varchar(255), " +
+                "number_of_post varchar(255), " +
+                "visitor varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initsmstable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Sms(id int NOT NULL AUTO_INCREMENT, " +
-                "برای کی رفته؟ varchar(255), " +
-                "متن sms varchar(255), " +
-                "زمان دقیق varchar(255), " +
+                "sms_owner varchar(255), " +
+                "sms_text varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initreportedtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Reported(id int NOT NULL AUTO_INCREMENT, " +
-                "نام گروه ریپورت شده varchar(255), " +
-                "کی ریپورت کرده؟ varchar(255), " +
-                "زمان ریپورت varchar(255), " +
+                "reported_group varchar(255), " +
+                "who_reported? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
@@ -68,203 +81,205 @@ public class DataBaseInitializer {
                 "bio varchar(255), " +
                 "Gender varchar(255), " +
                 "birthday varchar(255), " +
-                "تعداد پست varchar(255), " +
-                "تعداد فالور varchar(255), " +
-                "تعداد فالوینگ varchar(255), " +
+                "post_number varchar(255), " +
+                "follower_number varchar(255), " +
+                "following_number varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initprivatechatmessagetable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "PrivateChatMessage(id int NOT NULL AUTO_INCREMENT, "  +
-                "کی - کی varchar(255), " +
-                "فرستنده کیه varchar(255), " +
-                "متن چیه varchar(255), " +
-                "ریپلای شده؟ varchar(255), " +
-                "از کی ریپلای شده؟ varchar(255), " +
-                "از چ متنی ریپلای شده؟ varchar(255), " +
-                "فروارد شده؟ varchar(255), " +
-                "از کجا فروارد شده؟ varchar(255), " +
-                "ادیت شده؟ varchar(255), " +
-                "زمان دقیق پیام varchar(255), " +
+                "chat_owner varchar(255), " +
+                "sender varchar(255), " +
+                "text varchar(255), " +
+                "replied? varchar(255), " +
+                "whome_replied? varchar(255), " +
+                "what_replied? varchar(255), " +
+                "forwarded? varchar(255), " +
+                "forwarded_of_where? varchar(255), " +
+                "edited? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initposttable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS" +
-                "Post(id int NOT NULL AUTO_INCREMENT, " +
-                "پست کیه varchar(255), " +
-                "پست چندمه varchar(255), " +
-                "ad داره؟ varchar(255), " +
-                "متن varchar(255), " +
-                "ادیت شده؟ varchar(255), " +
-                "تعداد لایک varchar(255), " +
-                "تعداد بازدید varchar(255), " +
-                "تعداد کامنت varchar(255), " +
-                "زمان دقیق پست varchar(255), " +
+                "Post(postID int NOT NULL AUTO_INCREMENT, " +
+                "post_owner varchar(255), " +
+                "number_of_post varchar(255), " +
+                "has_ad? varchar(255), " +
+                "text varchar(255), " +
+                "is_it_edited? varchar(255), " +
+                "like_number varchar(255), " +
+                "view_number varchar(255), " +
+                "comment_number varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initpagesviewtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "PagesView(id int NOT NULL AUTO_INCREMENT, " +
-                "پیج کیه varchar(255), " +
-                "کی دیده varchar(255), " +
-                "زمان دقیق varchar(255), " +
+                "post_owner varchar(255), " +
+                "visitor varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initmutedtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Muted(id int NOT NULL AUTO_INCREMENT, " +
-                "کی میوت شده؟ varchar(255), " +
-                "کی میوت کرده؟ varchar(255), " +
-                "زمان میوت varchar(255), " +
+                "who_muted? varchar(255), " +
+                "muted varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initmembertable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Member(id int NOT NULL AUTO_INCREMENT, " +
-                "نام گروه varchar(255), " +
-                "نام عضو varchar(255), " +
-                "کی ادد کرده؟ varchar(255), " +
-                "زمان ادد شدن varchar(255), " +
+                "group_name varchar(255), " +
+                "member_name varchar(255), " +
+                "who_added? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initlikesposttable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "LikesPost(id int NOT NULL AUTO_INCREMENT, " +
-                "پست کیه varchar(255), " +
-                "پست چندمه varchar(255), " +
-                "کی لایک کرده varchar(255), " +
-                "زمان دقیق لایک varchar(255), " +
+                "post_owner varchar(255), " +
+                "number_of_post varchar(255), " +
+                "who_liked? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initlikecommenttable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "LikeComment(id int NOT NULL AUTO_INCREMENT, " +
-                "پست کیه varchar(255), " +
-                "پست چندمه varchar(255), " +
-                "کامنت چندمه varchar(255), " +
-                "کی لایک کرده varchar(255), " +
-                "زمان دقیق لایک varchar(255), " +
+                "post_owner varchar(255), " +
+                "number_of_post varchar(255), " +
+                "number_of_comment varchar(255), " +
+                "who_liked? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initkickedtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Kicked(id int NOT NULL AUTO_INCREMENT, " +
-                "نام گروه varchar(255), " +
-                "کی کیک شده؟ varchar(255), " +
-                "کی کیک کرده؟ varchar(255), " +
-                "زمان کیک varchar(255), " +
+                "group_name varchar(255), " +
+                "who_kicked? varchar(255), " +
+                "kicked varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initgrouptable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
-                "Group(id int NOT NULL AUTO_INCREMENT, " +
-                "نام گروه varchar(255), " +
-                "bio varchar(255), " +
+                "Group(groupId int NOT NULL AUTO_INCREMENT, " +
+                "groupName varchar(255), " +
                 "groupType(public or private?) varchar(255), " +
-                "سازنده varchar(255), " +
-                "زمان تشکیل گروه varchar(255), " +
+                "groupCreator varchar(255), " +
+                "groupAdminsNumber varchar(255), "+
+                "groupMembersNumber varchar(255), "+
+                "groupBio varchar(255), "+
+                "groupCreateTime varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initgroupmessagetable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "GroupMessage(id int NOT NULL AUTO_INCREMENT, " +
-                "نام گروه varchar(255), " +
-                "فرستنده کیه varchar(255), " +
-                "متن چیه varchar(255), " +
-                "ریپلای شده؟ varchar(255), " +
-                "از کی ریپلای شده؟ varchar(255), " +
-                "از چ متنی ریپلای شده؟ varchar(255), " +
-                "فروارد شده؟ varchar(255), " +
-                "از کجا فروارد شده؟ varchar(255), " +
-                "ادیت شده؟ varchar(255), " +
-                "زمان دقیق پیام varchar(255), " +
+                "group_name varchar(255), " +
+                "sender varchar(255), " +
+                "text varchar(255), " +
+                "replied? varchar(255), " +
+                "whome_replied? varchar(255), " +
+                "what_replied? varchar(255), " +
+                "forwarded? varchar(255), " +
+                "forwarded_of_where? varchar(255), " +
+                "edited? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initgmailtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Gmail(id int NOT NULL AUTO_INCREMENT, " +
-                "برای کی رفته؟ varchar(255), " +
-                "متن Gmail varchar(255), " +
-                "زمان دقیق varchar(255), " +
+                "Gmail_owner varchar(255), " +
+                "Gmail_text varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initfollowtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
-                "Follow(id int NOT NULL AUTO_INCREMENT, " +
-                "کی فالو شده varchar(255), " +
-                "کی فالو کرده varchar(255), " +
-                "زمان دقیق varchar(255), " +
+                "entity.Follow(id int NOT NULL AUTO_INCREMENT, " +
+                "following varchar(255), " +
+                "who_followed? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initfavoritetable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Favorite(id int NOT NULL AUTO_INCREMENT, " +
-                "کی فیوریت کرده؟ varchar(255), " +
-                "کی فیوریت شده؟ varchar(255), " +
+                "who_favorited? varchar(255), " +
+                "favorite varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initcommenttable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Comment(id int NOT NULL AUTO_INCREMENT, " +
-                "پست کیه varchar(255), " +
-                "پست چندمه varchar(255), " +
-                "کامنت چندمه varchar(255), " +
-                "کی نوشته varchar(255), " +
-                "متن کامنت varchar(255), " +
-                "تعداد لایک varchar(255), " +
-                "زمان دقیق کامنت varchar(255), " +
+                "post_owner varchar(255), " +
+                "number_of_post varchar(255), " +
+                "number_of_comment varchar(255), " +
+                "sender varchar(255), " +
+                "comment_text varchar(255), " +
+                "like_number varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initclosefriendtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "CloseFriend(id int NOT NULL AUTO_INCREMENT, " +
-                "کی فرند کرده؟ varchar(255), " +
-                "کی فرند شده؟ varchar(255), " +
+                "who_friended? varchar(255), " +
+                "friend varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initblocktable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Block(id int NOT NULL AUTO_INCREMENT, " +
-                "کی بلاک کرده؟ varchar(255), " +
-                "کی بلاک شده؟ varchar(255), " +
-                "زمان دقیق بلاک varchar(255), " +
+                "who_blocked? varchar(255), " +
+                "blocked varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();}
 
     private void initbannedtable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
                 "Banned(id int NOT NULL AUTO_INCREMENT, " +
-                "نام گروه varchar(255), " +
-                "کی بن شده؟ varchar(255), " +
-                "کی بن کرده؟ varchar(255), " +
-                "زمان بن varchar(255), " +
+                "group_name varchar(255), " +
+                "banned varchar(255), " +
+                "who_banned? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();
     }
 
-    private void initadminetable(Statement statement) throws SQLException {
+    private void initadmintable(Statement statement) throws SQLException {
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS"+
-                "Admine(id int NOT NULL AUTO_INCREMENT, " +
-                "نام گروه varchar(255), " +
-                "نام ادمین varchar(255), " +
-                "کی ادمینش کرد؟ varchar(255), " +
-                "زمان ادمین شدن varchar(255), " +
+                "Admin(id int NOT NULL AUTO_INCREMENT, " +
+                "group_name varchar(255), " +
+                "admin_name varchar(255), " +
+                "who_admined? varchar(255), " +
+                "time varchar(255), " +
                 "PRIMARY KEY (id)");
                 statement.close();
     }
